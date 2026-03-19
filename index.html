@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RXT5HMYDJ1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RXT5HMYDJ1');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurinkolab 2026 | Solar Engineering & Robotics Camp</title>
+    <meta name="description" content="Join our unforgettable summer robotics camp for ages 7-14. Learn programming, build robots, design solar karts, and make friends in Espoo, Finland.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --safety-orange: #ff6b00;
+            --blueprint-blue: #0a192f;
+            --grid-line: rgba(255, 107, 0, 0.15);
+            --tech-white: #e6f1ff;
+            --code-font: 'Courier New', Courier, monospace;
+            --teal: #4ecdc4;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--blueprint-blue);
+            color: var(--tech-white);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image:
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        /* ── Support Bar ── */
+        .support-bar {
+            background: rgba(0,0,0,0.35);
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            border-bottom: 1px solid var(--grid-line);
+        }
+        .support-text {
+            font-family: var(--code-font);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            opacity: 0.6;
+            text-align: center;
+        }
+        .logo-placeholder {
+            height: 40px;
+            filter: grayscale(1) brightness(2);
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+        .logo-placeholder:hover { filter: grayscale(0) brightness(1); opacity: 1; }
+
+        /* ── Header ── */
+        header {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 2px solid var(--safety-orange);
+            padding: 3rem 1rem;
+            position: relative;
+        }
+        .gear-container {
+            font-size: 5rem;
+            color: var(--safety-orange);
+            margin-bottom: 1rem;
+            animation: rotate 10s linear infinite;
+        }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        h1 {
+            font-size: clamp(2rem, 6vw, 4rem);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-family: var(--code-font);
+            border-right: 4px solid var(--safety-orange);
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            animation: typing 2s steps(20) forwards;
+        }
+        @keyframes typing { from { width: 0; } to { width: 100%; } }
+
+        .hero-image {
+            max-width: 280px;
+            border-radius: 12px;
+            margin: 1.5rem auto;
+            border: 2px solid rgba(255,107,0,0.4);
+            box-shadow: 0 0 30px rgba(255,107,0,0.2);
+        }
+
+        .btn {
+            display: inline-block;
+            background: transparent;
+            border: 2px solid var(--safety-orange);
+            color: var(--safety-orange);
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            font-weight: bold;
+            font-family: var(--code-font);
+            margin-top: 1rem;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+        .btn:hover { background: var(--safety-orange); color: white; }
+
+        /* ── Layout ── */
+        .container { max-width: 1100px; margin: auto; padding: 4rem 2rem; }
+
+        .section-title {
+            color: var(--safety-orange);
+            font-family: var(--code-font);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            border-left: 5px solid var(--safety-orange);
+            padding-left: 1rem;
+            font-size: 1.4rem;
+        }
+
+        /* ── Cards ── */
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,107,0,0.3);
+            padding: 2rem;
+            position: relative;
+            transition: 0.3s;
+            overflow: hidden;
+        }
+        .card:hover {
+            border-color: var(--safety-orange);
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(255,107,0,0.2);
+        }
+        .card img.card-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255,107,0,0.2);
+        }
+        .feature-icon { font-size: 2rem; margin-bottom: 1rem; color: var(--safety-orange); }
+        .highlight { color: var(--safety-orange); font-weight: bold; }
+        .highlight-teal { color: var(--teal); font-weight: bold; }
+
+        /* ── Schedule Table ── */
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            font-family: var(--code-font);
+        }
+        .schedule-table th, .schedule-table td {
+            border: 1px solid var(--grid-line);
+            padding: 1rem;
+            text-align: left;
+        }
+        .schedule-table th { background: rgba(255,107,0,0.1); color: var(--safety-orange); }
+        .schedule-table tr:hover td { background: rgba(255,107,0,0.05); }
+
+        /* ── Camp Cards (numbered) ── */
+        .camp-schedule {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .camp-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,107,0,0.3);
+            border-left: 5px solid var(--safety-orange);
+            padding: 2rem;
+            transition: 0.3s;
+        }
+        .camp-card:hover { border-color: var(--safety-orange); transform: translateY(-3px); box-shadow: 0 0 20px rgba(255,107,0,0.15); }
+        .camp-number {
+            background: var(--safety-orange);
+            color: white;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-family: var(--code-font);
+        }
+
+        /* ── Daily Schedule ── */
+        .daily-schedule {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,107,0,0.25);
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .schedule-item {
+            display: flex;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,107,0,0.1);
+            gap: 1rem;
+        }
+        .schedule-item:last-child { border-bottom: none; }
+        .schedule-time {
+            font-weight: 600;
+            color: var(--safety-orange);
+            min-width: 130px;
+            font-family: var(--code-font);
+            font-size: 0.9rem;
+        }
+
+        /* ── Pricing ── */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .pricing-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,107,0,0.3);
+            padding: 2rem;
+        }
+        .pricing-card.featured { border-left: 4px solid var(--safety-orange); }
+        .pricing-card.featured-teal { border-left: 4px solid var(--teal); }
+        .price-tag { font-size: 2.8rem; font-weight: 700; color: var(--safety-orange); margin: 0.5rem 0; font-family: var(--code-font); }
+        .price-tag-teal { font-size: 2.8rem; font-weight: 700; color: var(--teal); margin: 0.5rem 0; font-family: var(--code-font); }
+        .price-includes { list-style: none; margin-top: 1rem; }
+        .price-includes li { margin: 0.5rem 0; font-size: 0.9rem; padding-left: 1.5rem; position: relative; }
+        .price-includes li::before { content: "✓"; color: #27ae60; font-weight: bold; position: absolute; left: 0; }
+        .discount-badge {
+            display: inline-block;
+            background: rgba(39,174,96,0.2);
+            border: 1px solid #27ae60;
+            color: #27ae60;
+            padding: 0.3rem 0.8rem;
+            font-size: 0.85rem;
+            font-family: var(--code-font);
+            margin-top: 1rem;
+        }
+
+        /* ── Location ── */
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+        .location-block p { margin: 0.4rem 0; font-size: 0.95rem; }
+        .location-block a { color: var(--safety-orange); text-decoration: none; }
+        .location-block a:hover { text-decoration: underline; }
+
+        /* ── FAQ ── */
+        .faq-item {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,107,0,0.2);
+            border-left: 4px solid var(--safety-orange);
+            padding: 1.5rem;
+            margin-bottom: 1.2rem;
+            transition: 0.3s;
+        }
+        .faq-item:hover { background: rgba(255,107,0,0.06); }
+        .faq-question {
+            font-weight: 600;
+            font-family: var(--code-font);
+            color: var(--safety-orange);
+            margin-bottom: 0.6rem;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ── Contact / Footer ── */
+        footer {
+            background: #050c18;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--safety-orange);
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .contact-item h3 { color: var(--safety-orange); margin-bottom: 0.5rem; font-family: var(--code-font); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; }
+        .contact-btn {
+            display: inline-block;
+            background: transparent;
+            border: 2px solid var(--safety-orange);
+            color: var(--safety-orange);
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1.5rem;
+            transition: 0.3s;
+            font-family: var(--code-font);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .contact-btn:hover { background: var(--safety-orange); color: white; }
+
+        /* ── Divider ── */
+        .section-divider {
+            border: none;
+            border-top: 1px solid rgba(255,107,0,0.2);
+            margin: 0;
+        }
+
+        /* ── Subtext ── */
+        .body-text { max-width: 700px; margin-bottom: 2rem; opacity: 0.85; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; border-right: none; white-space: normal; width: 100%; }
+            .schedule-table { font-size: 0.8rem; }
+            .support-bar { gap: 1rem; flex-wrap: wrap; }
+            .schedule-time { min-width: 90px; font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── Support Bar ── -->
+    <div class="support-bar">
+        <div style="text-align: center;">
+            <p class="support-text">Strategic Partners & Support</p>
+            <div style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; justify-content: center;">
+                <img src="src/espoo-logo.jpg" alt="City of Espoo" class="logo-placeholder">
+                <img src="src/ieee.png" alt="IEEE" class="logo-placeholder">
+                <img src="src/logo.png" alt="Aurinkolab" class="logo-placeholder">
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Header ── -->
+    <header>
+        <div class="gear-container"><i class="fas fa-cog"></i></div>
+        <h1>AURINKOLAB 2026</h1>
+        <p style="font-family: var(--code-font); margin-top: 0.5rem; opacity: 0.8;">SOLAR ENGINEERING & ROBOTICS CAMP</p>
+        <img src="attached_assets/robot.png" alt="Teens learning with robots" class="hero-image">
+        <p style="font-family: var(--code-font); font-size: 0.9rem; opacity: 0.7; margin-top: 0.5rem;">Unforgettable summer adventures with robots &amp; real-world tech • Ages 7–14</p>
+        <a href="#registration" class="btn" style="margin-top: 1.5rem;">INITIALIZE ENROLLMENT</a>
+    </header>
+
+    <!-- ══════════════════════════════════════════
+         SECTION: What Kids Experience
+    ══════════════════════════════════════════ -->
+    <hr class="section-divider">
+    <div class="container">
+        <h2 class="section-title">System Overview — What Kids Will Experience</h2>
+        <p class="body-text">
+            Join us for an exciting summer filled with robots and technology! Our goal is to create a supportive environment where every child (ages 7–14) can grow, learn, and master modern engineering.
+        </p>
+        <p class="body-text" style="margin-top:-1rem;">
+            At AurinkoLab, we use hands-on learning in small groups (8–14 participants) to ensure personalized attention for every child. A short placement test on Day 1 helps us form balanced groups so each child learns at their optimal pace.
+        </p>
+
+        <div class="specs-grid">
+            <div class="card">
+                <img src="attached_assets/coding.jpeg" alt="Students coding" class="card-img">
+                <i class="fas fa-microchip feature-icon"></i>
+                <h3>Programming & Robotics</h3>
+                <p>Learn programming fundamentals with <span class="highlight">Scratch and Python</span> while building real robots with professional safety equipment.</p>
+            </div>
+            <div class="card">
+                <img src="attached_assets/go-kart.png" alt="Solar kart" class="card-img">
+                <i class="fas fa-car-battery feature-icon"></i>
+                <h3>Solar Karts</h3>
+                <p>Build and ride <span class="highlight">Solar Electric Karts</span>. Master the physics of speed, energy, and sustainable engineering.</p>
+            </div>
+            <div class="card">
+                <img src="attached_assets/boat.png" alt="Solar boat" class="card-img">
+                <i class="fas fa-water feature-icon"></i>
+                <h3>Solar Boats</h3>
+                <p>Build and test <span class="highlight">solar-powered boats</span>, learning about renewable energy and marine engineering principles.</p>
+            </div>
+            <div class="card">
+                <img src="attached_assets/fun.png" alt="Fun and friends" class="card-img">
+                <i class="fas fa-users feature-icon"></i>
+                <h3>Fun & Friends</h3>
+                <p>Enjoy warm meals, make new friends, and explore technology in a <span class="highlight">cozy historic space</span> built for curious minds.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         SECTION: Student Projects
+    ══════════════════════════════════════════ -->
+    <hr class="section-divider">
+    <div class="container">
+        <h2 class="section-title">Student Projects Showcase</h2>
+        <p class="body-text">See what our amazing students have built in previous camps — from solar-powered vehicles to innovative robotics projects!</p>
+
+        <div class="specs-grid">
+            <div class="card">
+                <img src="attached_assets/go-kart-2.png" alt="Student driving red solar kart" class="card-img">
+                <h3>Solar-Powered Go-Kart</h3>
+                <p>Students design and build their own solar-powered vehicles, learning about renewable energy and mechanical engineering.</p>
+            </div>
+            <div class="card">
+                <img src="attached_assets/boat_2.png" alt="Student in colorful solar boat" class="card-img">
+                <h3>DIY Solar Boats</h3>
+                <p>Young engineers create solar-powered boats, testing their designs on water while learning about buoyancy and solar energy.</p>
+            </div>
+            <div class="card">
+                <img src="attached_assets/lab.png" alt="Students in professional lab gear" class="card-img">
+                <h3>Professional Lab Work</h3>
+                <p>Students work with real engineering equipment and safety protocols, preparing them for future STEM careers.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         SECTION: Deployment Schedule
+    ══════════════════════════════════════════ -->
+    <hr class="section-divider">
+    <div class="container">
+        <h2 class="section-title">Deployment Schedule</h2>
+
+        <table class="schedule-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>DATES</th>
+                    <th>TARGET AGE</th>
+                    <th>LOCATION</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="highlight">01</span></td>
+                    <td>July 13 – July 17</td>
+                    <td>7 – 9 Years</td>
+                    <td>Mankkaan Makasiini, Espoo</td>
+                </tr>
+                <tr>
+                    <td><span class="highlight">02</span></td>
+                    <td>July 20 – July 25</td>
+                    <td>10 – 14 Years</td>
+                    <td>Luukki, Espoo <em>(24/7 Option)</em></td>
+                </tr>
+                <tr>
+                    <td><span class="highlight">03</span></td>
+                    <td>July 28 – August 1</td>
+                    <td>10 – 14 Years</td>
+                    <td>Mankkaan Makasiini, Espoo</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 style="color: var(--safety-orange); font-family: var(--code-font); margin: 2.5rem 0 1rem; text-transform: uppercase; font-size: 1rem; letter-spacing: 2px;">Session Breakdown</h3>
+        <div class="camp-schedule">
+            <div class="camp-card">
+                <div class="camp-number">1</div>
+                <h3 style="margin-bottom: 1rem;">July 13–17 &nbsp;|&nbsp; Ages 7–9</h3>
+                <p><i class="fas fa-clock highlight"></i> &nbsp;10:00 – 17:00 (drop-off from 09:30)</p>
+                <p style="margin-top: 0.8rem;"><strong>Focus:</strong> Introduction to robotics, basic programming with Scratch, simple robot building, and fun team activities.</p>
+            </div>
+            <div class="camp-card" style="border-left-color: var(--teal);">
+                <div class="camp-number" style="background: var(--teal);">2</div>
+                <h3 style="margin-bottom: 1rem;">July 20–25 &nbsp;|&nbsp; Ages 10–14 &nbsp;<span style="color:var(--teal); font-size: 0.75rem;">(Luukki 24/7)</span></h3>
+                <p><i class="fas fa-moon" style="color:var(--teal)"></i> &nbsp;Residential / Full Immersion Option</p>
+                <p style="margin-top: 0.8rem;"><strong>Focus:</strong> Advanced robotics, Python programming, complex design challenges, solar kart engineering.</p>
+            </div>
+            <div class="camp-card">
+                <div class="camp-number">3</div>
+                <h3 style="margin-bottom: 1rem;">July 28 – Aug 1 &nbsp;|&nbsp; Ages 10–14</h3>
+                <p><i class="fas fa-clock highlight"></i> &nbsp;10:00 – 17:00 (drop-off from 09:30)</p>
+                <p style="margin-top: 0.8rem;"><strong>Focus:</strong> Advanced robotics concepts, Python programming, solar kart engineering, and team challenges.</p>
+            </div>
+        </div>
+
+        <h3 style="color: var(--safety-orange); font-family: var(--code-font); margin: 2.5rem 0 1rem; text-transform: uppercase; font-size: 1rem; letter-spacing: 2px;">Daily Schedule</h3>
+        <div class="daily-schedule">
+            <div class="schedule-item">
+                <div class="schedule-time">09:30 – 10:00</div>
+                <div>Drop-off and morning activities</div>
+            </div>
+            <div class="schedule-item">
+                <div class="schedule-time">10:00 – 12:00</div>
+                <div>Morning tech session — programming or robotics</div>
+            </div>
+            <div class="schedule-item">
+                <div class="schedule-time">12:00 – 13:00</div>
+                <div>Lunch and free play</div>
+            </div>
+            <div class="schedule-item">
+                <div class="schedule-time">13:00 – 15:00</div>
+                <div>Afternoon tech session — robot building or kart design</div>
+            </div>
+            <div class="schedule-item">
+                <div class="schedule-time">15:00 – 15:30</div>
+                <div>Snack break</div>
+            </div>
+            <div class="schedule-item">
+                <div class="schedule-time">15:30 – 16:45</div>
+                <div>Team challenges and project work</div>
+            </div>
+            <div class="schedule-item">
+                <div class="schedule-time">16:45 – 17:00</div>
+                <div>Wrap-up and pick-up</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         SECTION: Resource Allocation / Pricing
+    ══════════════════════════════════════════ -->
+    <hr class="section-divider">
+    <div class="container" id="registration">
+        <h2 class="section-title">Resource Allocation — Pricing</h2>
+
+        <div class="pricing-grid">
+            <div class="pricing-card featured">
+                <h3 style="color: var(--safety-orange); font-family: var(--code-font); text-transform: uppercase;">Mankkaan Makasiini</h3>
+                <p style="opacity: 0.7; font-size: 0.9rem;">Day Camp — All-inclusive weekly rate</p>
+                <div class="price-tag">€280<span style="font-size: 1rem; opacity: 0.6;">/week</span></div>
+                <ul class="price-includes">
+                    <li><i class="fas fa-clock highlight"></i>&nbsp; 10:00 AM – 5:00 PM daily</li>
+                    <li>Warm lunch &amp; afternoon snacks</li>
+                    <li>All engineering materials</li>
+                    <li>Safety helmets for kart activities</li>
+                    <li>Professional instruction</li>
+                    <li>Camp completion certificate</li>
+                </ul>
+                <div class="discount-badge"><i class="fas fa-tag"></i> Community members: 7% discount</div>
+            </div>
+
+            <div class="pricing-card featured-teal">
+                <h3 style="color: var(--teal); font-family: var(--code-font); text-transform: uppercase;">Luukki Session</h3>
+                <p style="opacity: 0.7; font-size: 0.9rem;">Residential Immersion — Full board option</p>
+                <div class="price-tag-teal">€350<span style="font-size: 1rem; opacity: 0.6;">/week</span></div>
+                <ul class="price-includes">
+                    <li><i class="fas fa-moon" style="color:var(--teal)"></i>&nbsp; 24/7 Residential option</li>
+                    <li>Full board available</li>
+                    <li>All engineering materials</li>
+                    <li>Immersion programme</li>
+                    <li>Safety equipment provided</li>
+                    <li>Camp completion certificate</li>
+                </ul>
+                <div class="discount-badge" style="border-color: var(--teal); color: var(--teal);"><i class="fas fa-tag"></i> Community members: 7% discount</div>
+            </div>
+
+            <div class="pricing-card">
+                <h3 style="font-family: var(--code-font); text-transform: uppercase; color: var(--tech-white);">Global Specs</h3>
+                <p style="opacity: 0.7; font-size: 0.9rem; margin-bottom: 1rem;">Applies to all sessions</p>
+                <ul class="price-includes" style="margin-top: 0;">
+                    <li><i class="fas fa-users highlight"></i>&nbsp; Max 12 participants</li>
+                    <li><i class="fas fa-language highlight"></i>&nbsp; Multi-language instruction</li>
+                    <li><i class="fas fa-hard-hat highlight"></i>&nbsp; Safety gear provided</li>
+                    <li><i class="fas fa-puzzle-piece highlight"></i>&nbsp; STEM placement test Day 1</li>
+                    <li><i class="fas fa-child highlight"></i>&nbsp; Ages 7–14 welcome</li>
+                    <li><i class="fas fa-utensils highlight"></i>&nbsp; Dietary accommodations available</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="https://forms.office.com/r/rKwQwnmadu" class="btn" target="_blank" rel="noopener noreferrer">REGISTER NOW — SECURE YOUR SPOT</a>
+            <p style="margin-top: 1rem; opacity: 0.5; font-size: 0.85rem; font-family: var(--code-font);">Limited spots available. Secure your child's place today.</p>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         SECTION: Location
+    ══════════════════════════════════════════ -->
+    <hr class="section-divider">
+    <div class="container">
+        <h2 class="section-title">Camp Location</h2>
+        <div class="location-grid">
+            <div class="location-block">
+                <h3 style="color: var(--safety-orange); font-family: var(--code-font); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 2px;">AurinkoLab HQ</h3>
+                <p><i class="fas fa-map-marker-alt highlight"></i>&nbsp; <strong>Vanhan-Mankkaan kuja 2</strong></p>
+                <p style="padding-left: 1.4rem;">Mankkaa, Espoo, Finland</p>
+                <p style="margin-top: 1rem; opacity: 0.85;">Our camp is located in a cozy historic space in Mankkaa, Espoo. The building offers both indoor and outdoor spaces perfect for technology activities and solar kart testing.</p>
+                <p style="margin-top: 1rem;">
+                    <a href="https://maps.app.goo.gl/cskjMWaZZwm9Pso59" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-external-link-alt"></i>&nbsp; View on Google Maps
+                    </a>
+                </p>
+            </div>
+            <div class="location-block">
+                <h3 style="color: var(--safety-orange); font-family: var(--code-font); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 2px;">Getting There</h3>
+                <p><i class="fas fa-car highlight"></i>&nbsp; <strong>By car:</strong> Free parking available on-site</p>
+                <p style="margin-top: 0.6rem;"><i class="fas fa-bus highlight"></i>&nbsp; <strong>By bus:</strong> Routes 114, 105, 548, and 549 stop within a 5-minute walk</p>
+                <p style="margin-top: 0.6rem;"><i class="fas fa-bicycle highlight"></i>&nbsp; <strong>By bike:</strong> Secure bicycle parking available</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         SECTION: FAQ
+    ══════════════════════════════════════════ -->
+    <hr class="section-divider">
+    <div class="container">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+            <div class="faq-question">Do children need prior experience?</div>
+            <p>No prior experience is needed! Our curriculum is designed for all skill levels, and our placement test helps us group children appropriately so everyone is challenged at the right level.</p>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">What should my child bring?</div>
+            <p>Children should bring a water bottle, comfortable clothes, and closed-toe shoes. All technical equipment and materials are provided.</p>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Are there any dietary accommodations?</div>
+            <p>Yes, we can accommodate most dietary restrictions. Please note any special requirements during registration.</p>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">What safety measures are in place?</div>
+            <p>All activities are supervised by trained staff. Safety equipment is provided for all technical activities, and our staff-to-child ratio ensures proper supervision at all times.</p>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">What if my child needs to miss a day?</div>
+            <p>Our curriculum is designed to build day by day, but our instructors will help your child catch up if they miss a session.</p>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         FOOTER / Contact
+    ══════════════════════════════════════════ -->
+    <footer>
+        <div style="margin-bottom: 3rem;">
+            <p class="support-text" style="margin-bottom: 1.5rem;">Official Technical Support</p>
+            <div style="display: flex; gap: 3rem; justify-content: center; align-items: center; opacity: 0.4; flex-wrap: wrap;">
+                <img src="src/espoo-logo.jpg" alt="Espoo" style="height: 30px;">
+                <img src="src/ieee.png" alt="IEEE" style="height: 30px;">
+                <img src="src/logo.png" alt="Aurinkolab" style="height: 30px;">
+            </div>
+        </div>
+
+        <h2 class="section-title" style="border: none; text-align: center; padding: 0; font-size: 1.2rem;">Command Center Contact</h2>
+        <p style="opacity: 0.7; margin-bottom: 1.5rem;">Direct inquiries to our lead engineers:</p>
+
+        <div class="contact-grid" style="max-width: 700px; margin: 0 auto 2rem;">
+            <div class="contact-item">
+                <h3><i class="fas fa-envelope"></i>&nbsp; Email</h3>
+                <p>info@aurinkolab.fi</p>
+            </div>
+            <div class="contact-item">
+                <h3><i class="fas fa-phone"></i>&nbsp; Phone</h3>
+                <p>+358 45 3123388</p>
+            </div>
+            <div class="contact-item">
+                <h3><i class="fas fa-map-marker-alt"></i>&nbsp; Address</h3>
+                <p>Vanhan-Mankkaan kuja 2<br>Espoo, Finland</p>
+            </div>
+        </div>
+
+        <a href="mailto:info@aurinkolab.fi" class="contact-btn">INITIALIZE ENROLLMENT</a>
+        <p style="font-size: 0.7rem; margin-top: 2rem; opacity: 0.4;">© 2026 AURINKOLAB R.Y. ESPOO, FINLAND</p>
+    </footer>
+
+    <script>
+        // Scroll-reveal for cards
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.card, .camp-card, .pricing-card, .faq-item').forEach(el => {
+            el.style.opacity = 0;
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
