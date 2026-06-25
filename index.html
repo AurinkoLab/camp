@@ -11,17 +11,19 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aurinkolab 2026 | Solar Engineering & Robotics Camp</title>
+    <title>AI & Robotics Camp</title>
     <meta name="description" content="Join our unforgettable summer robotics camp. Learn programming, build robots, design solar karts, and make friends in Espoo, Finland.">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --safety-orange: #ff6b00;
-            --blueprint-blue: #0a192f;
-            --grid-line: rgba(255, 107, 0, 0.15);
-            --tech-white: #e6f1ff;
+            --safety-orange: #ff7a1a;      /* warmer, sunnier orange */
+            --blueprint-blue: #13294b;     /* lighter navy, less heavy */
+            --grid-line: rgba(255, 210, 63, 0.07);  /* soft yellow grid */
+            --tech-white: #eef4ff;
             --code-font: 'Courier New', Courier, monospace;
-            --teal: #4ecdc4;
+            --teal: #36c5d6;               /* brighter cyan */
+            --sun-yellow: #ffd23f;         /* sun accent */
+            --camp-green: #5fd068;         /* friendlier green */
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -58,21 +60,39 @@
             text-align: center;
         }
 
-.logo-unified {
-    height: 44px;
-    width: 130px;
-    object-fit: contain;
-    filter: grayscale(1) brightness(2);
-    opacity: 0.75;
-    transition: opacity 0.3s;
-    vertical-align: middle;
-}
-.logo-unified:hover { opacity: 1; }
+        .logo-unified {
+            height: 44px;
+            width: 130px;
+            object-fit: contain;
+            filter: grayscale(1) brightness(2);
+            opacity: 0.75;
+            transition: opacity 0.3s;
+            vertical-align: middle;
+        }
+        .logo-unified:hover { opacity: 1; }
 
-/* Special fix for TryEngineering — hides the white background */
-.logo-tryeng {
-    mix-blend-mode: screen;
-}
+        /* Special fix for TryEngineering — hides the white background */
+        .logo-tryeng {
+            mix-blend-mode: screen;
+        }
+
+        /* InterLang & AurinkoLab keep their real colors (skip the wash-out filter) */
+        .logo-interlang,
+        .logo-aurinko      {
+            filter: none;
+            opacity: 0.9;
+        }
+        .logo-interlang:hover,
+        .logo-aurinko:hover { opacity: 1; }
+
+        .logo-roboskills {
+            filter: none;
+            opacity: 0.9;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+        }
+
         /* Footer logos slightly smaller */
         .logo-footer {
             height: 30px;
@@ -87,6 +107,8 @@
             filter: grayscale(0) brightness(1);
             opacity: 1;
         }
+        .logo-footer.logo-aurinko,
+        .logo-footer.logo-interlang { filter: none; }
 
         /* ── Header ── */
         header {
@@ -125,8 +147,8 @@
             max-width: 280px;
             border-radius: 12px;
             margin: 1.5rem auto;
-            border: 2px solid rgba(255,107,0,0.4);
-            box-shadow: 0 0 30px rgba(255,107,0,0.2);
+            border: 2px solid rgba(255,122,26,0.4);
+            box-shadow: 0 0 30px rgba(255,122,26,0.2);
         }
 
         .btn {
@@ -167,7 +189,7 @@
         }
         .card {
             background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,107,0,0.3);
+            border: 1px solid rgba(255,122,26,0.3);
             padding: 2rem;
             position: relative;
             transition: 0.3s;
@@ -176,7 +198,7 @@
         .card:hover {
             border-color: var(--safety-orange);
             transform: translateY(-5px);
-            box-shadow: 0 0 20px rgba(255,107,0,0.2);
+            box-shadow: 0 0 20px rgba(255,122,26,0.2);
         }
         .card img.card-img {
             width: 100%;
@@ -184,9 +206,12 @@
             object-fit: cover;
             border-radius: 4px;
             margin-bottom: 1rem;
-            border: 1px solid rgba(255,107,0,0.2);
+            border: 1px solid rgba(255,122,26,0.2);
         }
         .feature-icon { font-size: 2rem; margin-bottom: 1rem; color: var(--safety-orange); }
+        /* Alternating accent colors so orange isn't carrying everything */
+        .card:nth-child(2n) .feature-icon { color: var(--sun-yellow); }
+        .card:nth-child(3n) .feature-icon { color: var(--teal); }
         .highlight { color: var(--safety-orange); font-weight: bold; }
         .highlight-teal { color: var(--teal); font-weight: bold; }
 
@@ -202,8 +227,8 @@
             padding: 1rem;
             text-align: left;
         }
-        .schedule-table th { background: rgba(255,107,0,0.1); color: var(--safety-orange); }
-        .schedule-table tr:hover td { background: rgba(255,107,0,0.05); }
+        .schedule-table th { background: rgba(255,122,26,0.12); color: var(--sun-yellow); }
+        .schedule-table tr:hover td { background: rgba(255,122,26,0.05); }
 
         /* ── Camp Cards (numbered) ── */
         .camp-schedule {
@@ -214,12 +239,13 @@
         }
         .camp-card {
             background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,107,0,0.3);
+            border: 1px solid rgba(255,122,26,0.3);
             border-left: 5px solid var(--safety-orange);
             padding: 2rem;
             transition: 0.3s;
         }
-        .camp-card:hover { border-color: var(--safety-orange); transform: translateY(-3px); box-shadow: 0 0 20px rgba(255,107,0,0.15); }
+        .camp-card:hover { border-color: var(--safety-orange); transform: translateY(-3px); box-shadow: 0 0 20px rgba(255,122,26,0.15); }
+        .camp-card:nth-child(2n) { border-left-color: var(--sun-yellow); }
         .camp-number {
             background: var(--safety-orange);
             color: white;
@@ -230,18 +256,19 @@
             margin-bottom: 1rem;
             font-family: var(--code-font);
         }
+        .camp-card:nth-child(2n) .camp-number { background: var(--sun-yellow); color: #5a3a00; }
 
         /* ── Daily Schedule ── */
         .daily-schedule {
             background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,107,0,0.25);
+            border: 1px solid rgba(255,122,26,0.25);
             padding: 2rem;
             margin: 2rem 0;
         }
         .schedule-item {
             display: flex;
             padding: 1rem 0;
-            border-bottom: 1px solid rgba(255,107,0,0.1);
+            border-bottom: 1px solid rgba(255,122,26,0.1);
             gap: 1rem;
         }
         .schedule-item:last-child { border-bottom: none; }
@@ -262,7 +289,7 @@
         }
         .pricing-card {
             background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,107,0,0.3);
+            border: 1px solid rgba(255,122,26,0.3);
             padding: 2rem;
         }
         .pricing-card.featured { border-left: 4px solid var(--safety-orange); }
@@ -271,12 +298,12 @@
         .price-tag-teal { font-size: 2.8rem; font-weight: 700; color: var(--teal); margin: 0.5rem 0; font-family: var(--code-font); }
         .price-includes { list-style: none; margin-top: 1rem; }
         .price-includes li { margin: 0.5rem 0; font-size: 0.9rem; padding-left: 1.5rem; position: relative; }
-        .price-includes li::before { content: "✓"; color: #27ae60; font-weight: bold; position: absolute; left: 0; }
+        .price-includes li::before { content: "✓"; color: var(--camp-green); font-weight: bold; position: absolute; left: 0; }
         .discount-badge {
             display: inline-block;
-            background: rgba(39,174,96,0.2);
-            border: 1px solid #27ae60;
-            color: #27ae60;
+            background: rgba(95,208,104,0.18);
+            border: 1px solid var(--camp-green);
+            color: var(--camp-green);
             padding: 0.3rem 0.8rem;
             font-size: 0.85rem;
             font-family: var(--code-font);
@@ -293,17 +320,22 @@
         .location-block p { margin: 0.4rem 0; font-size: 0.95rem; }
         .location-block a { color: var(--safety-orange); text-decoration: none; }
         .location-block a:hover { text-decoration: underline; }
+        /* Second location ties in the cyan accent */
+        .location-block.alt h3 { color: var(--teal) !important; }
+        .location-block.alt a { color: var(--teal); }
 
         /* ── FAQ ── */
         .faq-item {
             background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,107,0,0.2);
+            border: 1px solid rgba(255,122,26,0.2);
             border-left: 4px solid var(--safety-orange);
             padding: 1.5rem;
             margin-bottom: 1.2rem;
             transition: 0.3s;
         }
-        .faq-item:hover { background: rgba(255,107,0,0.06); }
+        .faq-item:hover { background: rgba(255,122,26,0.06); }
+        .faq-item:nth-child(2n) { border-left-color: var(--teal); }
+        .faq-item:nth-child(2n) .faq-question { color: var(--teal); }
         .faq-question {
             font-weight: 600;
             font-family: var(--code-font);
@@ -316,7 +348,7 @@
 
         /* ── Contact / Footer ── */
         footer {
-            background: #050c18;
+            background: #0c1a33;
             padding: 4rem 2rem;
             text-align: center;
             border-top: 1px solid var(--safety-orange);
@@ -348,7 +380,7 @@
         /* ── Divider ── */
         .section-divider {
             border: none;
-            border-top: 1px solid rgba(255,107,0,0.2);
+            border-top: 1px solid rgba(255,122,26,0.2);
             margin: 0;
         }
 
@@ -372,8 +404,11 @@
             <div style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; justify-content: center;">
                 <img src="attached_assets/Espoo_logot_RGB_valkoinen.png" alt="City of Espoo" class="logo-unified">
                 <img src="attached_assets/epics.png" alt="EPICS in IEEE" class="logo-unified">
-                <svg class="logo-unified" viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg">
-                    <g stroke="#F5A623" stroke-width="2.5" stroke-linecap="round">
+
+                
+                <!-- AurinkoLab — colored sun -->
+                <svg class="logo-unified logo-aurinko" viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg">
+                    <g stroke="#FFD23F" stroke-width="2.5" stroke-linecap="round">
                         <line x1="155" y1="95" x2="155" y2="82"/>
                         <line x1="155" y1="195" x2="155" y2="208"/>
                         <line x1="100" y1="145" x2="87" y2="145"/>
@@ -383,15 +418,47 @@
                         <line x1="194" y1="106" x2="203" y2="97"/>
                         <line x1="116" y1="184" x2="107" y2="193"/>
                     </g>
-                    <circle cx="155" cy="145" r="44" fill="none" stroke="#F5A623" stroke-width="3"/>
-                    <circle cx="142" cy="136" r="4" fill="#F5A623"/>
-                    <circle cx="168" cy="136" r="4" fill="#F5A623"/>
-                    <path d="M142 158 Q155 172 168 158" fill="none" stroke="#F5A623" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="155" cy="145" r="44" fill="#FFD23F" stroke="#FF7A1A" stroke-width="3"/>
+                    <circle cx="142" cy="136" r="4" fill="#5a3a00"/>
+                    <circle cx="168" cy="136" r="4" fill="#5a3a00"/>
+                    <path d="M142 158 Q155 172 168 158" fill="none" stroke="#5a3a00" stroke-width="3" stroke-linecap="round"/>
                     <line x1="256" y1="80" x2="256" y2="210" stroke="#F0E8A0" stroke-width="1" opacity="0.35"/>
-                    <text x="290" y="141" font-family="'Arial Black', Impact, sans-serif" font-size="62" font-weight="900" fill="#F5A623" stroke="#F0E8A0" stroke-width="3" paint-order="stroke" letter-spacing="2">AURINKO</text>
-                    <text x="338" y="200" font-family="'Arial Black', Impact, sans-serif" font-size="62" font-weight="900" fill="#F5A623" stroke="#F0E8A0" stroke-width="3" paint-order="stroke" letter-spacing="2">LAB</text>
+                    <text x="290" y="141" font-family="'Arial Black', Impact, sans-serif" font-size="62" font-weight="900" fill="#FF7A1A" stroke="#F0E8A0" stroke-width="3" paint-order="stroke" letter-spacing="2">AURINKO</text>
+                    <text x="338" y="200" font-family="'Arial Black', Impact, sans-serif" font-size="62" font-weight="900" fill="#FF7A1A" stroke="#F0E8A0" stroke-width="3" paint-order="stroke" letter-spacing="2">LAB</text>
                     <text x="339" y="236" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#F0E8A0" text-anchor="middle" letter-spacing="5">ENGINEERING SCHOOL</text>
                 </svg>
+
+                <!-- RoboSkills — inline SVG -->
+                <img src="attached_assets/roboskills.png" alt="RoboSkills" class="logo-unified logo-roboskills">
+
+                <!-- InterLang — inline SVG (lightbulb puzzle logo), no file dependency -->
+                <svg class="logo-unified logo-interlang" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="InterLang">
+                    <g stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round">
+                        <line x1="100" y1="18" x2="100" y2="34"/>
+                        <line x1="60" y1="28" x2="68" y2="43"/>
+                        <line x1="140" y1="28" x2="132" y2="43"/>
+                        <line x1="32" y1="55" x2="44" y2="66"/>
+                        <line x1="168" y1="55" x2="156" y2="66"/>
+                        <line x1="20" y1="95" x2="36" y2="95"/>
+                        <line x1="180" y1="95" x2="164" y2="95"/>
+                        <line x1="28" y1="135" x2="43" y2="127"/>
+                        <line x1="172" y1="135" x2="157" y2="127"/>
+                    </g>
+                    <path d="M100 50 A50 50 0 0 0 50 100 L100 100 Z" fill="#ffffff" stroke="#1a1a1a" stroke-width="4" stroke-linejoin="round"/>
+                    <path d="M100 50 A50 50 0 0 1 150 100 L100 100 Z" fill="#e8412b" stroke="#1a1a1a" stroke-width="4" stroke-linejoin="round"/>
+                    <path d="M50 100 A50 50 0 0 0 75 143 L75 130 L100 130 L100 100 Z" fill="#4cb8e8" stroke="#1a1a1a" stroke-width="4" stroke-linejoin="round"/>
+                    <path d="M100 100 L150 100 A50 50 0 0 1 125 143 L125 130 L100 130 Z" fill="#f5d042" stroke="#1a1a1a" stroke-width="4" stroke-linejoin="round"/>
+                    <circle cx="100" cy="68" r="9" fill="#e8412b" stroke="#1a1a1a" stroke-width="4"/>
+                    <circle cx="118" cy="100" r="9" fill="#f5d042" stroke="#1a1a1a" stroke-width="4"/>
+                    <circle cx="100" cy="118" r="9" fill="#4cb8e8" stroke="#1a1a1a" stroke-width="4"/>
+                    <g fill="none" stroke="#1a1a1a" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+                        <path d="M78 143 L78 158 Q78 168 88 170 L112 170 Q122 168 122 158 L122 143" fill="#ffffff"/>
+                        <line x1="80" y1="151" x2="120" y2="151"/>
+                        <line x1="82" y1="160" x2="118" y2="160"/>
+                        <path d="M90 170 Q100 182 110 170 Z" fill="#cccccc"/>
+                    </g>
+                </svg>
+
             </div>
         </div>
     </div>
@@ -399,8 +466,8 @@
     <!-- ── Header ── -->
     <header>
         <div class="gear-container"><i class="fas fa-cog"></i></div>
-        <h1>AURINKOLAB 2026</h1>
-        <p style="font-family: var(--code-font); margin-top: 0.5rem; opacity: 0.8;">SOLAR ENGINEERING & ROBOTICS CAMP</p>
+        <h1>Science Camp 2026</h1>
+        <p style="font-family: var(--code-font); margin-top: 0.5rem; opacity: 0.8;">AI, SOLAR ENGINEERING & ROBOTICS CAMP</p>
         <img src="attached_assets/robot.png" alt="Teens learning with robots" class="hero-image">
         <p style="font-family: var(--code-font); font-size: 0.9rem; opacity: 0.7; margin-top: 0.5rem;">Unforgettable summer adventures with robots &amp; real-world tech</p>
         <a href="#registration" class="btn" style="margin-top: 1.5rem;">INITIALIZE ENROLLMENT</a>
@@ -436,7 +503,7 @@
                 <img src="attached_assets/boat.png" alt="Solar boat" class="card-img">
                 <i class="fas fa-water feature-icon"></i>
                 <h3>Solar Boats</h3>
-                <p>Test <span class="highlight">solar-powered boats</span>, learning about renewable energy and marine engineering principles.</p>
+                <p>Test <span class="highlight-teal">solar-powered boats</span>, learning about renewable energy and marine engineering principles.</p>
             </div>
             <div class="card">
                 <img src="attached_assets/filming.avif" alt="Filming and Animation" class="card-img">
@@ -501,12 +568,12 @@
                     <td><span class="highlight">01</span></td>
                     <td>July 13 – July 17</td>
                     <td>7 – 10 Years</td>
-                    <td>Mankkaan Makasiini, Espoo</td>
+                    <td>Mankkaan Makasiini, Espoo / Saukopaadenranta 4G, Helsinki</td>
                 </tr>
                 <tr>
                     <td><span class="highlight">03</span></td>
                     <td>July 28 – August 1</td>
-                    <td>10+ Years</td>
+                    <td>10 - 14 Years</td>
                     <td>Mankkaan Makasiini, Espoo</td>
                 </tr>
             </tbody>
@@ -571,8 +638,8 @@
 
         <div class="pricing-grid">
             <div class="pricing-card featured">
-                <h3 style="color: var(--safety-orange); font-family: var(--code-font); text-transform: uppercase;">Mankkaan Makasiini</h3>
-                <p style="opacity: 0.7; font-size: 0.9rem;">Day Camp — All-inclusive weekly rate</p>
+                <h3 style="color: var(--safety-orange); font-family: var(--code-font); text-transform: uppercase;">Day Camp </h3>
+                <p style="opacity: 0.7; font-size: 0.9rem;">All-inclusive weekly rate</p>
                 <div class="price-tag">€300<span style="font-size: 1rem; opacity: 0.6;">/week</span></div>
                 <ul class="price-includes">
                     <li><i class="fas fa-clock highlight"></i>&nbsp; 10:00 AM – 5:00 PM daily</li>
@@ -608,24 +675,29 @@
     ══════════════════════════════════════════ -->
     <hr class="section-divider">
     <div class="container">
-        <h2 class="section-title">Camp Location</h2>
+        <h2 class="section-title">Camp Locations</h2>
         <div class="location-grid">
             <div class="location-block">
                 <h3 style="color: var(--safety-orange); font-family: var(--code-font); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 2px;">AurinkoLab HQ</h3>
                 <p><i class="fas fa-map-marker-alt highlight"></i>&nbsp; <strong>Vanhan-Mankkaan kuja 2</strong></p>
                 <p style="padding-left: 1.4rem;">Mankkaa, Espoo, Finland</p>
-                <p style="margin-top: 1rem; opacity: 0.85;">Our camp is located in a cozy historic space in Mankkaa, Espoo. The building offers both indoor and outdoor spaces perfect for technology activities and solar kart testing.</p>
+                <p style="margin-top: 1rem; opacity: 0.85;">This camp is located in a cozy historic space in Mankkaa, Espoo. The building offers both indoor and outdoor spaces perfect for technology activities and solar kart testing.</p>
                 <p style="margin-top: 1rem;">
                     <a href="https://maps.app.goo.gl/cskjMWaZZwm9Pso59" target="_blank" rel="noopener noreferrer">
                         <i class="fas fa-external-link-alt"></i>&nbsp; View on Google Maps
                     </a>
                 </p>
             </div>
-            <div class="location-block">
-                <h3 style="color: var(--safety-orange); font-family: var(--code-font); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 2px;">Getting There</h3>
-                <p><i class="fas fa-car highlight"></i>&nbsp; <strong>By car:</strong> Free parking available on-site</p>
-                <p style="margin-top: 0.6rem;"><i class="fas fa-bus highlight"></i>&nbsp; <strong>By bus:</strong> Routes 114, 105, 548, and 549 stop within a 5-minute walk</p>
-                <p style="margin-top: 0.6rem;"><i class="fas fa-bicycle highlight"></i>&nbsp; <strong>By bike:</strong> Secure bicycle parking available</p>
+            <div class="location-block alt">
+                <h3 style="font-family: var(--code-font); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 2px;">INTERLANG & lingualink hq</h3>
+                <p><i class="fas fa-map-marker-alt highlight-teal"></i>&nbsp; <strong>Saukopaadenranta 4G</strong></p>
+                <p style="padding-left: 1.4rem;">Jätkäsaari, Helsinki, Finland</p>
+                <p style="margin-top: 1rem; opacity: 0.85;">Location in Jätkäsaari, Helsinki, in a modern waterfront area with excellent indoor and outdoor spaces. The location provides a great environment for technology activities, creative projects, and outdoor testing sessions.</p>
+                <p style="margin-top: 1rem;">
+                <a href="https://maps.app.goo.gl/JPbWp8v4Q6hwTj5w8" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-external-link-alt"></i>&nbsp; View on Google Maps
+                </a>
+            </p>
             </div>
         </div>
     </div>
@@ -668,8 +740,10 @@
             <div style="display: flex; gap: 3rem; justify-content: center; align-items: center; opacity: 0.6; flex-wrap: wrap;">
                 <img src="attached_assets/Espoo_logot_RGB_valkoinen.png" alt="City of Espoo" class="logo-footer">
                 <img src="attached_assets/epics.png" alt="EPICS in IEEE" class="logo-footer">
-                <svg class="logo-footer" viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg">
-                    <g stroke="#F5A623" stroke-width="2.5" stroke-linecap="round">
+
+                <!-- AurinkoLab — colored sun (footer) -->
+                <svg class="logo-footer logo-aurinko" viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg">
+                    <g stroke="#FFD23F" stroke-width="2.5" stroke-linecap="round">
                         <line x1="155" y1="95" x2="155" y2="82"/>
                         <line x1="155" y1="195" x2="155" y2="208"/>
                         <line x1="100" y1="145" x2="87" y2="145"/>
@@ -679,16 +753,47 @@
                         <line x1="194" y1="106" x2="203" y2="97"/>
                         <line x1="116" y1="184" x2="107" y2="193"/>
                     </g>
-                    <circle cx="155" cy="145" r="44" fill="none" stroke="#F5A623" stroke-width="3"/>
-                    <circle cx="142" cy="136" r="4" fill="#F5A623"/>
-                    <circle cx="168" cy="136" r="4" fill="#F5A623"/>
-                    <path d="M142 158 Q155 172 168 158" fill="none" stroke="#F5A623" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="155" cy="145" r="44" fill="#FFD23F" stroke="#FF7A1A" stroke-width="3"/>
+                    <circle cx="142" cy="136" r="4" fill="#5a3a00"/>
+                    <circle cx="168" cy="136" r="4" fill="#5a3a00"/>
+                    <path d="M142 158 Q155 172 168 158" fill="none" stroke="#5a3a00" stroke-width="3" stroke-linecap="round"/>
                     <line x1="256" y1="80" x2="256" y2="210" stroke="#F0E8A0" stroke-width="1" opacity="0.35"/>
-                    <text x="290" y="141" font-family="'Arial Black', Impact, sans-serif" font-size="62" font-weight="900" fill="#F5A623" stroke="#F0E8A0" stroke-width="3" paint-order="stroke" letter-spacing="2">AURINKO</text>
-                    <text x="338" y="200" font-family="'Arial Black', Impact, sans-serif" font-size="62" font-weight="900" fill="#F5A623" stroke="#F0E8A0" stroke-width="3" paint-order="stroke" letter-spacing="2">LAB</text>
+                    <text x="290" y="141" font-family="'Arial Black', Impact, sans-serif" font-size="62" font-weight="900" fill="#FF7A1A" stroke="#F0E8A0" stroke-width="3" paint-order="stroke" letter-spacing="2">AURINKO</text>
+                    <text x="338" y="200" font-family="'Arial Black', Impact, sans-serif" font-size="62" font-weight="900" fill="#FF7A1A" stroke="#F0E8A0" stroke-width="3" paint-order="stroke" letter-spacing="2">LAB</text>
                     <text x="339" y="236" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#F0E8A0" text-anchor="middle" letter-spacing="5">ENGINEERING SCHOOL</text>
                 </svg>
             </div>
+
+                            <!-- InterLang — inline SVG (lightbulb puzzle logo), no file dependency -->
+                <svg class="logo-unified logo-interlang" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="InterLang">
+                    <g stroke="#1a1a1a" stroke-width="3.5" stroke-linecap="round">
+                        <line x1="100" y1="18" x2="100" y2="34"/>
+                        <line x1="60" y1="28" x2="68" y2="43"/>
+                        <line x1="140" y1="28" x2="132" y2="43"/>
+                        <line x1="32" y1="55" x2="44" y2="66"/>
+                        <line x1="168" y1="55" x2="156" y2="66"/>
+                        <line x1="20" y1="95" x2="36" y2="95"/>
+                        <line x1="180" y1="95" x2="164" y2="95"/>
+                        <line x1="28" y1="135" x2="43" y2="127"/>
+                        <line x1="172" y1="135" x2="157" y2="127"/>
+                    </g>
+                    <path d="M100 50 A50 50 0 0 0 50 100 L100 100 Z" fill="#ffffff" stroke="#1a1a1a" stroke-width="4" stroke-linejoin="round"/>
+                    <path d="M100 50 A50 50 0 0 1 150 100 L100 100 Z" fill="#e8412b" stroke="#1a1a1a" stroke-width="4" stroke-linejoin="round"/>
+                    <path d="M50 100 A50 50 0 0 0 75 143 L75 130 L100 130 L100 100 Z" fill="#4cb8e8" stroke="#1a1a1a" stroke-width="4" stroke-linejoin="round"/>
+                    <path d="M100 100 L150 100 A50 50 0 0 1 125 143 L125 130 L100 130 Z" fill="#f5d042" stroke="#1a1a1a" stroke-width="4" stroke-linejoin="round"/>
+                    <circle cx="100" cy="68" r="9" fill="#e8412b" stroke="#1a1a1a" stroke-width="4"/>
+                    <circle cx="118" cy="100" r="9" fill="#f5d042" stroke="#1a1a1a" stroke-width="4"/>
+                    <circle cx="100" cy="118" r="9" fill="#4cb8e8" stroke="#1a1a1a" stroke-width="4"/>
+                    <g fill="none" stroke="#1a1a1a" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+                        <path d="M78 143 L78 158 Q78 168 88 170 L112 170 Q122 168 122 158 L122 143" fill="#ffffff"/>
+                        <line x1="80" y1="151" x2="120" y2="151"/>
+                        <line x1="82" y1="160" x2="118" y2="160"/>
+                        <path d="M90 170 Q100 182 110 170 Z" fill="#cccccc"/>
+                    </g>
+                </svg>
+
+                <!-- RoboSkills — inline SVG -->
+                <img src="attached_assets/roboskills.png" alt="RoboSkills" class="logo-unified logo-roboskills">
         </div>
 
         <h2 class="section-title" style="border: none; text-align: center; padding: 0; font-size: 1.2rem;">Command Center Contact</h2>
@@ -698,14 +803,17 @@
             <div class="contact-item">
                 <h3><i class="fas fa-envelope"></i>&nbsp; Email</h3>
                 <p>info@aurinkolab.fi</p>
+                <p>interlang.home@gmail.com</p>
             </div>
             <div class="contact-item">
                 <h3><i class="fas fa-phone"></i>&nbsp; Phone</h3>
                 <p>+358 45 3123388</p>
+                <p>+358 50 3039866</p>
             </div>
             <div class="contact-item">
                 <h3><i class="fas fa-map-marker-alt"></i>&nbsp; Address</h3>
-                <p>Vanhan-Mankkaan kuja 2<br>Espoo, Finland</p>
+                <p>Vanhan-Mankkaan kuja 2, Espoo, Finland</p>
+                <p>Saukopaadenranta 4G, Helsinki, Finland</p>
             </div>
         </div>
 
